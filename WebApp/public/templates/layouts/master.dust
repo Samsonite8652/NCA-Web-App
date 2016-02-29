@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	    <meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <title>{+title /}</title> --> <title>NCA</title>
+    
+        <!-- <link rel="stylesheet" href="/css/app.css"> -->
+	    <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+	    <link rel="stylesheet" type="text/css" href="../../css/grid.css">
+	    <!-- <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"> --> <!-- THIS CAUSES MISALIGNMENT ISSUES-->
+	    <link rel="stylesheet" type="text/css" href="../../css/animate.min.css">
+	    <link rel="stylesheet" type="text/css" href="../../css/ionicons.min.css">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,300italic">
+	    
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    	<link rel="stylesheet" href="../../css/backendStyle.css" type="text/css" media="screen">
+		
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		    <!--[if lt IE 9]>
+		      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		    <![endif]-->
+    
+    </head>
+    <body>
+
+        <div id="wrapper">
+            {+body /}
+		</div>
+
+		<!-- ALL JS CODE BELOW -->
+    
+		<!--JS Code-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+		
+		<script src="../../js/jquery.collagePlus.min.js" type="text/javascript"></script>
+        <!-- <script src="/js/app.js"></script> -->
+		<!-- ????? ????? <script src="js/wow.min.js"></script> --> <!-- Find out from OP what this is suppose to do...-->
+		
+		<script src="../../js/modernizr.js"></script> <!-- Modernizr JS. Gottlieb addition. -->
+		<script src="../../js/main.js"></script> <!-- Gem jQuery. Gottlieb addition. -->
+
+		<script>
+		    new WOW().init();
+		</script>
+			
+		<script>
+			// I would like to remove the "fixed" header tab once you reach the conatct us section, so that picture displays in full. 
+		    var a = $(".nav").offset().top;
+			
+		    $(document).scroll(function(){
+		        if($(this).scrollTop() > 0){
+		            $('.nav').css({"background":"rgba(255, 255, 255, 0.95)", "border-bottom":"1px solid #eeeeee","transition":"background-color 1s"});
+		            $('.text').css({ "color":"gray","transition":"color 0.9s"});
+		        }else{
+		            $('.nav').css({"background":"transparent","border":"none"});
+		            $('.text').css({"color":"white"});
+				}
+		    });
+		</script>
+	
+		<script>
+			/*Credits: http://stackoverflow.com/questions/3898130/how-to-check-if-a-user-has-scrolled-to-the-bottom */
+	
+		    $(window).scroll(function() {   
+		      if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+		          //alert("You are near the bottom!");
+		          $('.nav').css({"background":"transparent","border":"none"});
+		          $('.text').css({"color":"white","transition":"color 0.5s"});
+		      }
+		   });
+		</script>
+		
+		
+		
+		
+		<!-- Payments-->
+		<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+	
+		<!-- card.js script-->
+	    <script src="../../js/card.js"></script>
+	    <script>
+	        new Card({
+	            form: document.querySelector('form'),
+	            container: '.card-wrapper'
+	        });
+	    </script>
+		
+		<script>	
+			$('#toggle > button').click(function() {
+		    	var ix = $(this).index();
+    
+		   	 	$('#container-credit').toggle( ix === 0 );
+				$('#paypal').toggle( ix === 1 );
+			});	
+		</script>
+		
+		<script type="text/javascript">
+		  braintree.setup("CLIENT-TOKEN-FROM-SERVER", "custom", {
+		    paypal: {
+		      container: "paypal-container",
+		    },
+		    onPaymentMethodReceived: function (obj) {
+		      doSomethingWithTheNonce(obj.nonce);
+		    }
+		  });
+		</script>
+		   
+    </body>
+</html>
